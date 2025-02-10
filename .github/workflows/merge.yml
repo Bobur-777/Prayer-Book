@@ -71,6 +71,10 @@ jobs:
                   file_path="$lang/$file"
                   alt_path="$lang/${file%%_*}_man.json"
 
+                  # Debug information
+                  echo "Checking file: $file_path"S
+                  echo "Checking alternative file: $alt_path"
+
                   # Find the correct file path
                   if [ -f "$file_path" ]; then
                     target="$file_path"
