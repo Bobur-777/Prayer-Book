@@ -7,7 +7,7 @@ on:
       - 'uz/**/*.json'
 
 jobs:
-  merge-json:
+  merge-and-zip:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,30 +20,65 @@ jobs:
       - name: Merge JSON Files
         run: |
           prayers_file="man/prayers.json"
-          output_dir="."
+          output_dir="merged_prayers"
+
+          mkdir -p "$output_dir"
+
+          # Validate prayers.json
+          if ! jq empty "$prayers_file"; then
+            echo "❌ Error: Invalid JSON in $prayers_file"
+            exit 1
+          fi
 
           prayers=$(jq -r '.[]' "$prayers_file")
 
           for prayer in $prayers; do
-            merge_list=$(jq -r '.[]' "man/$prayer")
+            prayer_file="man/$prayer"
+
+            # Validate each prayer JSON file
+            if ! jq empty "$prayer_file"; then
+              echo "❌ Error: Invalid JSON in $prayer_file"
+              continue
+            fi
+
+            merge_list=$(jq -r '.[]' "$prayer_file")
             merged_array="[]"
 
             for file in $merge_list; do
               file_path="uz/$file"
               alt_path="uz/${file##*/}"
 
+              # Find the correct file path
               if [ -f "$file_path" ]; then
-                content=$(cat "$file_path")
+                target="$file_path"
               elif [ -f "$alt_path" ]; then
-                content=$(cat "$alt_path")
+                target="$alt_path"
               else
-                echo "File $file not found, skipping."
+                echo "⚠️ Warning: File $file not found, skipping."
                 continue
               fi
 
-              merged_array=$(jq -s 'add' <(echo "$merged_array") <(echo "$content"))
+              # Validate and merge JSON content
+              if jq empty "$target"; then
+                content=$(cat "$target")
+                merged_array=$(jq -s 'add' <(echo "$merged_array") <(echo "$content"))
+              else
+                echo "❌ Error: Invalid JSON in $target, skipping."
+              fi
             done
 
+            # Save merged JSON
             echo "$merged_array" > "$output_dir/$prayer"
-            echo "Merged $prayer successfully."
+            echo "✅ Merged $prayer successfully."
           done
+
+      - name: Create ZIP Archive
+        run: |
+          zip -r merged_prayers.zip merged_prayers
+          echo "📦 Created merged_prayers.zip"
+
+      - name: Upload ZIP Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged_prayers
+          path: merged_prayers.zip
