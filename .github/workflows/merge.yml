@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'man/prayers.json'
+      - 'woman/prayers.json'
       - 'uz/**/*.json'
 
 jobs:
@@ -19,66 +20,83 @@ jobs:
 
       - name: Merge JSON Files
         run: |
-          prayers_file="man/prayers.json"
+          set -e
+
+          languages_file="uz/languages.json"
           output_dir="merged_prayers"
 
           mkdir -p "$output_dir"
 
-          # Validate prayers.json
-          if ! jq empty "$prayers_file"; then
-            echo "❌ Error: Invalid JSON in $prayers_file"
+          # Validate languages.json
+          if ! jq empty "$languages_file"; then
+            echo "Error: Invalid JSON in $languages_file"
             exit 1
           fi
 
-          prayers=$(jq -r '.[]' "$prayers_file")
+          languages=$(jq -r '.[]' "$languages_file")
 
-          for prayer in $prayers; do
-            prayer_file="man/$prayer"
+          for lang in $languages; do
+            for gender in man woman; do
+              prayers_file="$gender/prayers.json"
 
-            # Validate each prayer JSON file
-            if ! jq empty "$prayer_file"; then
-              echo "❌ Error: Invalid JSON in $prayer_file"
-              continue
-            fi
-
-            merge_list=$(jq -r '.[]' "$prayer_file")
-            merged_array="[]"
-
-            for file in $merge_list; do
-              file_path="uz/$file"
-              alt_path="uz/${file##*/}"
-
-              # Find the correct file path
-              if [ -f "$file_path" ]; then
-                target="$file_path"
-              elif [ -f "$alt_path" ]; then
-                target="$alt_path"
-              else
-                echo "⚠️ Warning: File $file not found, skipping."
+              # Validate prayers.json
+              if ! jq empty "$prayers_file"; then
+                echo "Error: Invalid JSON in $prayers_file"
                 continue
               fi
 
-              # Validate and merge JSON content
-              if jq empty "$target"; then
-                content=$(cat "$target")
-                merged_array=$(jq -s 'add' <(echo "$merged_array") <(echo "$content"))
-              else
-                echo "❌ Error: Invalid JSON in $target, skipping."
-              fi
-            done
+              prayers=$(jq -r '.[]' "$prayers_file")
 
-            # Save merged JSON
-            echo "$merged_array" > "$output_dir/$prayer"
-            echo "✅ Merged $prayer successfully."
+              for prayer in $prayers; do
+                prayer_file="$gender/$prayer"
+
+                # Validate each prayer JSON file
+                if ! jq empty "$prayer_file"; then
+                  echo "Error: Invalid JSON in $prayer_file"
+                  continue
+                fi
+
+                merge_list=$(jq -r '.[]' "$prayer_file")
+                merged_array="[]"
+
+                for file in $merge_list; do
+                  file_path="$lang/$file"
+                  alt_path="$lang/${file##*/}"
+
+                  # Find the correct file path
+                  if [ -f "$file_path" ]; then
+                    target="$file_path"
+                  elif [ -f "$alt_path" ]; then
+                    target="$alt_path"
+                  else
+                    echo "Warning: File $file not found, skipping."
+                    continue
+                  fi
+
+                  # Validate and merge JSON content
+                  if jq empty "$target"; then
+                    content=$(cat "$target")
+                    merged_array=$(jq -s 'add' <(echo "$merged_array") <(echo "$content"))
+                  else
+                    echo "Error: Invalid JSON in $target, skipping."
+                  fi
+                done
+
+                # Save merged JSON
+                mkdir -p "$output_dir/$gender"
+                echo "$merged_array" > "$output_dir/$gender/$prayer"
+                echo "Merged $prayer for $gender successfully."
+              done
+            done
           done
 
       - name: Create ZIP Archive
         run: |
-          zip -r merged_prayers.zip merged_prayers
-          echo "📦 Created merged_prayers.zip"
+          zip -r merged_prayers_output.zip merged_prayers
+          echo "Created merged_prayers_output.zip"
 
       - name: Upload ZIP Artifact
         uses: actions/upload-artifact@v4
         with:
           name: merged_prayers
-          path: merged_prayers.zip
+          path: merged_prayers_output.zip
