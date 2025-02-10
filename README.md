@@ -15,6 +15,8 @@ This project provides a comprehensive JSON database for daily prayers, including
 |--------------------------|----------------------------|
 | Fajr - 2 raka'ah sunnah  | [1_1.json](man/1_1.json)   |
 | Fajr - 2 raka'ah fard    | [1_2.json](man/1_2.json)   |
+| Dhuhr - 4 raka'ah sunnah  | [2_1.json](man/2_1.json)   |
+| Dhuhr - 4 raka'ah fard    | [2_2.json](man/2_2.json)   |
 
 ## Supported Languages
 
