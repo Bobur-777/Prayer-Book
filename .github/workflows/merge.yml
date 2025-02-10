@@ -22,7 +22,7 @@ jobs:
         run: |
           set -e
 
-          languages_file="uz/languages.json"
+          languages_file="languages.json"
           output_dir="merged_prayers"
 
           mkdir -p "$output_dir"
