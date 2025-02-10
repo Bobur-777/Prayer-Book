@@ -72,7 +72,7 @@ jobs:
                   alt_path="$lang/${file%%_*}_man.json"
 
                   # Debug information
-                  echo "Checking file: $file_path"S
+                  echo "Checking file: $file_path"
                   echo "Checking alternative file: $alt_path"
 
                   # Find the correct file path
