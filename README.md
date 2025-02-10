@@ -21,6 +21,5 @@ This project provides a comprehensive JSON database for daily prayers, including
 |------------|-------|--------------|
 | English    | en    | Soon         |
 | Arabic     | ar    | Soon         |
-| Urdu       | ur    | Soon         |
-| Turkish    | tr    | Soon         |
+| Russian    | ur    | Soon         |
 | Uzbek      | uz    | Aviable      |
