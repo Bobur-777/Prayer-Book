@@ -41,6 +41,12 @@ jobs:
             for gender in man woman; do
               prayers_file="$gender/prayers.json"
 
+              # Check if prayers.json exists for the gender
+              if [ ! -f "$prayers_file" ]; then
+                echo "Warning: $prayers_file not found, skipping."
+                continue
+              fi
+
               # Validate prayers.json
               if ! jq empty "$prayers_file"; then
                 echo "Error: Invalid JSON in $prayers_file"
@@ -63,7 +69,7 @@ jobs:
 
                 for file in $merge_list; do
                   file_path="$lang/$file"
-                  alt_path="$lang/${file##*/}"
+                  alt_path="$lang/${file%%_*}_man.json"
 
                   # Find the correct file path
                   if [ -f "$file_path" ]; then
