@@ -14,3 +14,13 @@ This project provides a comprehensive JSON database for daily prayers, including
 | Prayer Name              | File name              |
 |--------------------------|------------------------|
 | Fajr - 2 raka'ah fard    | [1_1.json](1_1.json)   |
+
+## Supported Languages
+
+| Language   | Code  | Availability |
+|------------|-------|--------------|
+| English    | en    | Soon         |
+| Arabic     | ar    | Soon         |
+| Urdu       | ur    | Soon         |
+| Turkish    | tr    | Soon         |
+| Uzbek      | uz    | Aviable      |
