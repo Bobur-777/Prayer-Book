@@ -22,4 +22,4 @@ This project provides a comprehensive JSON database for daily prayers, including
 | English    | en    | Soon         |
 | Arabic     | ar    | Soon         |
 | Russian    | ur    | Soon         |
-| Uzbek      | uz    | Aviable      |
+| Uzbek      | uz    | Available    |
