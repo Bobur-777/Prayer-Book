@@ -1,0 +1,46 @@
+name: Merge JSON Files
+
+on:
+  push:
+    paths:
+      - 'man/prayers.json'
+      - 'uz/**/*.json'
+
+jobs:
+  merge-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get install jq -y
+
+      - name: Merge JSON Files
+        run: |
+          prayers_file="man/prayers.json"
+          output_dir="."
+
+          prayers=$(jq -r '.[]' "$prayers_file")
+
+          for prayer in $prayers; do
+            merge_list=$(jq -r '.[]' "man/$prayer")
+            merged_content="{}"
+
+            for file in $merge_list; do
+              if [ -f "uz/$file" ]; then
+                content=$(cat "uz/$file")
+              elif [ -f "uz/${file##*/}" ]; then
+                content=$(cat "uz/${file##*/}")
+              else
+                echo "File $file not found, skipping."
+                continue
+              fi
+
+              merged_content=$(jq -s '.[0] * .[1]' <(echo "$merged_content") <(echo "$content"))
+            done
+
+            echo "$merged_content" > "$output_dir/$prayer"
+            echo "Merged $prayer successfully."
+          done
