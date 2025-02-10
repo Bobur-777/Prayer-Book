@@ -11,8 +11,8 @@ This project provides a comprehensive JSON database for daily prayers, including
 
 ## Table of Prayer Names and Files
 
-| Prayer Name              | File name              |
-|--------------------------|------------------------|
+| Prayer Name              | File name                  |
+|--------------------------|----------------------------|
 | Fajr - 2 raka'ah sunnah  | [1_1.json](man/1_1.json)   |
 | Fajr - 2 raka'ah fard    | [1_2.json](man/1_2.json)   |
 
