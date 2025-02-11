@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="image.png" style="width: 30%;" />
+</p>
+
 ## Prayer-Book
 ![GitHub contributors](https://img.shields.io/github/contributors/bobur-777/Prayer-Book)
 ![GitHub last commit](https://img.shields.io/github/last-commit/bobur-777/Prayer-Book)
@@ -5,18 +9,20 @@
 
 This project provides a comprehensive JSON database for daily prayers, including detailed instructions, audio files, and images to guide users through each step of the prayer. The prayers are structured according to the Hanafi school of thought and are suitable for both men and women.
 
-## Table of Prayer Names and Files
+### Table of Prayer Names and Files
 
 | Prayer Name              | File name                  |
 |--------------------------|----------------------------|
 | Fajr - 2 raka'ah sunnah  | [1_1.json](man/1_1.json)   |
 | Fajr - 2 raka'ah fard    | [1_2.json](man/1_2.json)   |
-| Dhuhr - 4 raka'ah sunnah  | [2_1.json](man/2_1.json)   |
-| Dhuhr - 4 raka'ah fard    | [2_2.json](man/2_2.json)   |
-| Dhuhr - 2 raka'ah sunnah    | [2_2.json](man/2_3.json)   |
+| Dhuhr - 4 raka'ah sunnah | [2_1.json](man/2_1.json)   |
+| Dhuhr - 4 raka'ah fard   | [2_2.json](man/2_2.json)   |
+| Dhuhr - 2 raka'ah sunnah | [2_3.json](man/2_3.json)   |
+| Asr - 4 raka'ah fard     | [3_1.json](man/3_1.json)   |
+| Maghrib - 3 raka'ah fard | [4_1.json](man/4_1.json)   |
+| Maghrib - 2 raka'ah sunnah | [4_2.json](man/4_2.json)   |
 
-
-## Supported Languages
+### Supported Languages
 
 | Language   | Code  | Availability |
 |------------|-------|--------------|
