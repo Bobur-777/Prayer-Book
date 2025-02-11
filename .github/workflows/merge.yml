@@ -3,9 +3,7 @@ name: Merge JSON Files
 on:
   push:
     paths:
-      - 'man/prayers.json'
-      - 'woman/prayers.json'
-      - 'uz/**/*.json'
+      - '**/*.json'
 
 jobs:
   merge-and-zip:
