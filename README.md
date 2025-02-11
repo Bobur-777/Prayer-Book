@@ -24,10 +24,10 @@ This project provides a comprehensive JSON database for daily prayers, including
 | Isha - 4 raka'ah fard    | 5_1  | [5_1.json](man/5_1.json)   | [5_1.json](woman/5_1.json) |
 | Isha - 2 raka'ah sunnah  | 5_2  | [5_2.json](man/5_2.json)   | [5_2.json](woman/5_2.json) |
 | Isha - 4 raka'ah wajib   | 5_3  | [5_3.json](man/5_3.json)   | [5_3.json](woman/5_3.json) |
-| Jumu'ah - 4 raka'ah sunnah | 6_1  | [6_1.json](man/6_1.json) | [6_1.json](woman/6_1.json) |
-| Jumu'ah - 2 raka'ah fard | 6_2  | [6_2.json](man/6_2.json)   | [6_2.json](woman/6_2.json) |
-| Jumu'ah - 4 raka'ah sunnah | 6_3  | [6_3.json](man/6_3.json) | [6_3.json](woman/6_3.json) |
-| Janazah - 4 takbir       | 7_1  | [7_1.json](man/7_1.json)   | [7_1.json](woman/7_1.json) |
+| Jumu'ah - 4 raka'ah sunnah | 6_1  | [6_1.json](man/6_1.json) | |
+| Jumu'ah - 2 raka'ah fard | 6_2  | [6_2.json](man/6_2.json)   | |
+| Jumu'ah - 4 raka'ah sunnah | 6_3  | [6_3.json](man/6_3.json) | |
+| Janazah - 4 takbir       | 7_1  | [7_1.json](man/7_1.json)   | |
 
 ### Supported Languages
 
