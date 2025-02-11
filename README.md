@@ -24,6 +24,9 @@ This project provides a comprehensive JSON database for daily prayers, including
 | Isha - 4 raka'ah fard    | [5_1.json](man/5_1.json)   |
 | Isha - 2 raka'ah sunnah  | [5_2.json](man/5_2.json)   |
 | Isha - 4 raka'ah wajib   | [5_3.json](man/5_3.json)   |
+| Jumu'ah - 4 raka'ah sunnah | [6_1.json](man/6_1.json) |
+| Jumu'ah - 2 raka'ah fard | [6_2.json](man/6_2.json)   |
+| Jumu'ah - 4 raka'ah sunnah | [6_3.json](man/6_3.json) |
 
 ### Supported Languages
 
