@@ -4,17 +4,19 @@ on:
   push:
     paths:
       - '**/*.json'
+- '**/**/*.json'
 
 jobs:
   merge-and-zip:
     runs-on: ubuntu-latest
 
-    - name: Checkout Repository
-  uses: actions/checkout@v4
-  with:
-    fetch-depth: 0  # This fetches the entire history
-    clean: true     # Ensures a clean working directory
-    ref: ${{ github.sha }}  # Ensures the specific commit that triggered the workflow is checked out
+    steps:  # Added 'steps' key to define the workflow steps
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # This fetches the entire history
+          clean: true     # Ensures a clean working directory
+          ref: ${{ github.sha }}  # Ensures the specific commit that triggered the workflow is checked out
 
       - name: Install jq
         run: sudo apt-get install jq -y
