@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="image.png" style="width: 30%;" />
+  <img src="image.png" />
 </p>
 
 ## Prayer-Book
