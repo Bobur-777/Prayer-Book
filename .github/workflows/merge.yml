@@ -70,17 +70,13 @@ jobs:
 
                 for file in $merge_list; do
                   file_path="$lang/$file"
-                  alt_path="$lang/${file%%_*}_man.json"
 
                   # Debug information
                   echo "Checking file: $file_path"
-                  echo "Checking alternative file: $alt_path"
 
                   # Find the correct file path
                   if [ -f "$file_path" ]; then
                     target="$file_path"
-                  elif [ -f "$alt_path" ]; then
-                    target="$alt_path"
                   else
                     echo "Warning: File $file not found, skipping."
                     continue
