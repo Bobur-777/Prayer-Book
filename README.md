@@ -1,4 +1,4 @@
-# Prayer-Book
+## Prayer-Book
 ![GitHub contributors](https://img.shields.io/github/contributors/bobur-777/Prayer-Book)
 ![GitHub last commit](https://img.shields.io/github/last-commit/bobur-777/Prayer-Book)
 ![Alpha Release](https://img.shields.io/badge/release-alpha-orange)
