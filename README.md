@@ -11,22 +11,23 @@ This project provides a comprehensive JSON database for daily prayers, including
 
 ### Table of Prayer Names and Files
 
-| Prayer Name              | File name                  |
-|--------------------------|----------------------------|
-| Fajr - 2 raka'ah sunnah  | [1_1.json](man/1_1.json)   |
-| Fajr - 2 raka'ah fard    | [1_2.json](man/1_2.json)   |
-| Dhuhr - 4 raka'ah sunnah | [2_1.json](man/2_1.json)   |
-| Dhuhr - 4 raka'ah fard   | [2_2.json](man/2_2.json)   |
-| Dhuhr - 2 raka'ah sunnah | [2_3.json](man/2_3.json)   |
-| Asr - 4 raka'ah fard     | [3_1.json](man/3_1.json)   |
-| Maghrib - 3 raka'ah fard | [4_1.json](man/4_1.json)   |
-| Maghrib - 2 raka'ah sunnah | [4_2.json](man/4_2.json) |
-| Isha - 4 raka'ah fard    | [5_1.json](man/5_1.json)   |
-| Isha - 2 raka'ah sunnah  | [5_2.json](man/5_2.json)   |
-| Isha - 4 raka'ah wajib   | [5_3.json](man/5_3.json)   |
-| Jumu'ah - 4 raka'ah sunnah | [6_1.json](man/6_1.json) |
-| Jumu'ah - 2 raka'ah fard | [6_2.json](man/6_2.json)   |
-| Jumu'ah - 4 raka'ah sunnah | [6_3.json](man/6_3.json) |
+| Prayer Name              | Code | Man                        | Woman                      |
+|--------------------------|------|----------------------------|----------------------------|
+| Fajr - 2 raka'ah sunnah  | 1_1  | [1_1.json](man/1_1.json)   | [1_1.json](woman/1_1.json) |
+| Fajr - 2 raka'ah fard    | 1_2  | [1_2.json](man/1_2.json)   | [1_2.json](woman/1_2.json) |
+| Dhuhr - 4 raka'ah sunnah | 2_1  | [2_1.json](man/2_1.json)   | [2_1.json](woman/2_1.json) |
+| Dhuhr - 4 raka'ah fard   | 2_2  | [2_2.json](man/2_2.json)   | [2_2.json](woman/2_2.json) |
+| Dhuhr - 2 raka'ah sunnah | 2_3  | [2_3.json](man/2_3.json)   | [2_3.json](woman/2_3.json) |
+| Asr - 4 raka'ah fard     | 3_1  | [3_1.json](man/3_1.json)   | [3_1.json](woman/3_1.json) |
+| Maghrib - 3 raka'ah fard | 4_1  | [4_1.json](man/4_1.json)   | [4_1.json](woman/4_1.json) |
+| Maghrib - 2 raka'ah sunnah | 4_2  | [4_2.json](man/4_2.json) | [4_2.json](woman/4_2.json) |
+| Isha - 4 raka'ah fard    | 5_1  | [5_1.json](man/5_1.json)   | [5_1.json](woman/5_1.json) |
+| Isha - 2 raka'ah sunnah  | 5_2  | [5_2.json](man/5_2.json)   | [5_2.json](woman/5_2.json) |
+| Isha - 4 raka'ah wajib   | 5_3  | [5_3.json](man/5_3.json)   | [5_3.json](woman/5_3.json) |
+| Jumu'ah - 4 raka'ah sunnah | 6_1  | [6_1.json](man/6_1.json) | [6_1.json](woman/6_1.json) |
+| Jumu'ah - 2 raka'ah fard | 6_2  | [6_2.json](man/6_2.json)   | [6_2.json](woman/6_2.json) |
+| Jumu'ah - 4 raka'ah sunnah | 6_3  | [6_3.json](man/6_3.json) | [6_3.json](woman/6_3.json) |
+| Janazah - 4 takbir       | 7_1  | [7_1.json](man/7_1.json)   | [7_1.json](woman/7_1.json) |
 
 ### Supported Languages
 
