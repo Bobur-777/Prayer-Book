@@ -20,7 +20,10 @@ This project provides a comprehensive JSON database for daily prayers, including
 | Dhuhr - 2 raka'ah sunnah | [2_3.json](man/2_3.json)   |
 | Asr - 4 raka'ah fard     | [3_1.json](man/3_1.json)   |
 | Maghrib - 3 raka'ah fard | [4_1.json](man/4_1.json)   |
-| Maghrib - 2 raka'ah sunnah | [4_2.json](man/4_2.json)   |
+| Maghrib - 2 raka'ah sunnah | [4_2.json](man/4_2.json) |
+| Isha - 4 raka'ah fard    | [5_1.json](man/5_1.json)   |
+| Isha - 2 raka'ah sunnah  | [5_2.json](man/5_2.json)   |
+| Isha - 4 raka'ah wajib   | [5_3.json](man/5_3.json)   |
 
 ### Supported Languages
 
