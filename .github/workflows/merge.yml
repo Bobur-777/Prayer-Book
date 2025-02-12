@@ -39,11 +39,14 @@ jobs:
           languages=$(jq -r '.[]' "$languages_file")
 
           for lang in $languages; do
+            lang_output_dir="$output_dir/$lang"
+            mkdir -p "$lang_output_dir"
+
             for gender in man woman; do
               prayers_file="$gender/prayers.json"
 
               # Check if prayers.json exists for the gender
-              if [ ! -f "$prayers_file" ]; then
+              if [ ! -f "$prayers_file"; then
                 echo "Warning: $prayers_file not found, skipping."
                 continue
               fi
@@ -71,9 +74,6 @@ jobs:
                 for file in $merge_list; do
                   file_path="$lang/$file"
 
-                  # Debug information
-                  echo "Checking file: $file_path"
-
                   # Find the correct file path
                   if [ -f "$file_path" ]; then
                     target="$file_path"
@@ -92,20 +92,19 @@ jobs:
                 done
 
                 # Save merged JSON
-                mkdir -p "$output_dir/$gender"
-                echo "$merged_array" > "$output_dir/$gender/$prayer"
+                mkdir -p "$lang_output_dir/$gender"
+                echo "$merged_array" > "$lang_output_dir/$gender/$prayer"
                 echo "Merged $prayer for $gender successfully."
               done
             done
+
+            # Create ZIP Archive for each language
+            zip -r "$lang.zip" "$lang_output_dir"
+            echo "Created $lang.zip"
           done
 
-      - name: Create ZIP Archive
-        run: |
-          zip -r merged_prayers_output.zip merged_prayers
-          echo "Created merged_prayers_output.zip"
-
-      - name: Upload ZIP Artifact
+      - name: Upload ZIP Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: merged_prayers
-          path: merged_prayers_output.zip
+          path: '*.zip'
