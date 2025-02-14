@@ -1,0 +1,101 @@
+name: Merge JSON Files
+
+on:
+  push:
+    paths:
+      - '**/*.json'
+      - '**/**/*.json'
+
+jobs:
+  merge-and-zip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          clean: true
+          ref: ${{ github.sha }}
+
+      - name: Install jq
+        run: sudo apt-get install jq -y
+
+      - name: Merge JSON Files
+        run: |
+          set -e
+          
+          languages_file="languages.json"
+
+          if ! jq empty "$languages_file"; then
+            echo "Error: Invalid JSON in $languages_file"
+            exit 1
+          fi
+
+          languages=$(jq -r '.[]' "$languages_file")
+
+          for lang in $languages; do
+            mkdir -p "$lang/man" "$lang/woman"
+
+            for gender in man woman; do
+              prayers_file="$gender/prayers.json"
+
+              if [ ! -f "$prayers_file" ]; then
+                echo "Warning: $prayers_file not found, skipping."
+                continue
+              fi
+
+              if ! jq empty "$prayers_file"; then
+                echo "Error: Invalid JSON in $prayers_file"
+                continue
+              fi
+
+              prayers=$(jq -r '.[]' "$prayers_file")
+
+              for prayer in $prayers; do
+                prayer_file="$gender/$prayer"
+
+                if ! [ -f "$prayer_file" ]; then
+                  echo "Warning: $prayer_file not found, skipping."
+                  continue
+                fi
+
+                if ! jq empty "$prayer_file"; then
+                  echo "Error: Invalid JSON in $prayer_file, skipping."
+                  continue
+                fi
+
+                merge_list=$(jq -r '.[]' "$prayer_file")
+                merged_array="[]"
+
+                for file in $merge_list; do
+                  file_path="$lang/$file"
+
+                  if [ ! -f "$file_path" ]; then
+                    echo "Warning: File $file not found, skipping."
+                    continue
+                  fi
+
+                  if jq empty "$file_path"; then
+                    content=$(cat "$file_path")
+                    merged_array=$(jq -s 'add' <(echo "$merged_array") <(echo "$content"))
+                  else
+                    echo "Error: Invalid JSON in $file_path, skipping."
+                  fi
+                done
+
+                echo "$merged_array" > "$lang/$gender/$prayer"
+                echo "Merged $prayer for $gender successfully."
+              done
+            done
+
+            (cd "$lang" && zip -r "../$lang.zip" man woman)
+            rm -rf "$lang"
+            echo "Created $lang.zip"
+          done
+
+      - name: Upload ZIP Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-prayers
+          path: '*.zip'
